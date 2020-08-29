@@ -15,13 +15,12 @@ const registerHandler = (route, handler) => {
 		registration.handler = handler
 	}
 	else {
-		registration.test = util.wildcardToRegExp(route)
-		registration.route = route
 		handler.slice(-3) == '.js'
 			? registration.handler = require(handlerPath + handler)
 			: registration.handler = (req, res) => {render.page(handler, res)}
 	}
-	
+	registration.test = util.wildcardToRegExp(route)
+	registration.route = route
 	Routing.push(registration)
 }
 
