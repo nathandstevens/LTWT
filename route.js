@@ -1,22 +1,26 @@
 const util = require('./util.js')
 const render = require('./render.js')
-const config = require('./config.json')
+const url = require('url')
 
 
 
 let Routing = []
-
+const handlerPath = process.env.SMPLhandlerpath || "./routes/"
 
 
 // Register Handler
 const registerHandler = (route, handler) => {
 	let registration = {}
-	
-	registration.test = util.wildcardToRegExp(route)
-	registration.route = route
-	handler.slice(-3) == '.js'
-		? registration.handler = require(config.handlerPath + handler)
-		: registration.handler = (req, res, q) => {render.page(handler, res)}
+	if ((typeof handler) == "function") {
+		registration.handler = handler
+	}
+	else {
+		registration.test = util.wildcardToRegExp(route)
+		registration.route = route
+		handler.slice(-3) == '.js'
+			? registration.handler = require(handlerPath + handler)
+			: registration.handler = (req, res) => {render.page(handler, res)}
+	}
 	
 	Routing.push(registration)
 }
@@ -31,10 +35,11 @@ const inRoute = (pathname) => {
 
 
 // Route to handler based on validated request
-const route = (req, res, q) => {
+const route = (req, res) => {
+	let href = url.parse(req.url, true).href
 	Routing.forEach((route) => {
-		if (route.test.test(q.href)) {
-			route.handler(req, res, q)
+		if (route.test.test(href)) {
+			route.handler(req, res)
 		}
 	})
 }

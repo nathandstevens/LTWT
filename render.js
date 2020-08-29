@@ -1,9 +1,9 @@
 const fs = require('fs');
-const config = require('./config.json');
 const util = require('util');
 const {Transform} = require('stream');
 
-
+const staticPath = process.env.SMPLstaticpath || "./resources/static/"
+const templatePath = process.env.SMPLtemplatepath || "./resources/templates/"
 
 // Template rendering stream object
 function TemplateRenderer(placeholders, options) {
@@ -23,7 +23,7 @@ TemplateRenderer.prototype._transform = function(chunk, enc, cb) {
 	
 	Object.entries(this.placeholders).forEach((entry) => {
 		let [key, value] = entry;
-		let search = RegExp(config.startTempVar + key + config.endTempVar, "g" )
+		let search = RegExp("{{ " + key + " }}", "g" )
 		renderedTemplate = renderedTemplate.replace(search, value)
 	});
 	
@@ -36,7 +36,7 @@ TemplateRenderer.prototype._transform = function(chunk, enc, cb) {
 
 // Render arbitrary content
 const content = (filepath, contentType, res) => {
-	let readStream = fs.createReadStream(config.staticPath + filepath);
+	let readStream = fs.createReadStream(staticPath + filepath);
 	
 	readStream.on('open', () => {
 		res.writeHead(200, {'Content-Type': contentType});
@@ -45,7 +45,7 @@ const content = (filepath, contentType, res) => {
 	});
 	
 	readStream.on('error', (err) => {
-		fs.access(config.staticPath + filepath, fs.constants.F_OK, (err) => {
+		fs.access(staticPath + filepath, fs.constants.F_OK, (err) => {
 			error(err ? 404 : 500, filepath, res, err ? '' : err)
 		});
 	});
@@ -54,7 +54,7 @@ const content = (filepath, contentType, res) => {
 
 // Render a static html file
 const page = (page, res) => {
-	let readStream = fs.createReadStream(config.staticPath + page);
+	let readStream = fs.createReadStream(staticPath + page);
 	
 	readStream.on('open', () => {
 		res.writeHead(200, {'Content-Type': 'text/html'});
@@ -70,7 +70,7 @@ const page = (page, res) => {
 
 // Render template and replace placeholders
 const template = (template, res, placeholders={}, httpcode=200, cb) => {
-	let readStream = fs.createReadStream(config.templatePath + template, {encoding:'utf8'});
+	let readStream = fs.createReadStream(templatePath + template, {encoding:'utf8'});
 	let renderer = TemplateRenderer(placeholders,{})
 	
 	readStream.on('open', () => {
