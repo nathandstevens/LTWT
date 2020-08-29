@@ -94,7 +94,9 @@ const template = (template, res, placeholders={}, httpcode=200, cb) => {
 const error = (code, href, res, msg='') => {
 	console.log(code + ":\t" + href)
 	if (msg != '') console.log('\t' + msg)
-	template("error.html",res,{"code":code},code)
+	//template("error.html",res,{"code":code},code)
+	res.writeHead(code)
+	res.end()
 }
 
 
