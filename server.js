@@ -1,7 +1,13 @@
+// Required Modules
 const http = require('http')
 const url = require('url')
 const render = require('./render.js')
 const routing = require('./route.js')
+
+
+
+// Defining Variables and Constants
+//     *None
 
 
 
@@ -12,7 +18,6 @@ const httpListener = (req, res) => {
 	if (!routing.inRoute(href)) {
 		render.error(404,href,res)
 	}
-	
 	else {
 		try {
 			routing.route(req, res)
@@ -31,6 +36,8 @@ const start = (port=process.env.SMPLport||80) => {
 	s.listen(port)
 	console.log("Listening on port " + port + "...")
 }
+
+
 
 module.exports = {
 	"start":start

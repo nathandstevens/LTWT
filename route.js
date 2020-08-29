@@ -1,27 +1,32 @@
+// Required Modules
 const util = require('./util.js')
 const render = require('./render.js')
 const url = require('url')
 
 
 
+// Defining Variables and Constants
 let Routing = []
 const handlerPath = process.env.SMPLhandlerpath || "./routes/"
+
 
 
 // Register Handler
 const registerHandler = (route, handler) => {
 	let registration = {}
-	if ((typeof handler) == "function") {
+	
+	if ((typeof handler) == "function") {	// Use handler as is if function
 		registration.handler = handler
 	}
-	else {
+	else {									// Expect string otherwise and treat as filename
 		handler.slice(-3) == '.js'
-			? registration.handler = require(handlerPath + handler)
-			: registration.handler = (req, res) => {render.page(handler, res)}
+			? registration.handler = require(handlerPath + handler)					// Import if is '.js' file
+			: registration.handler = (req, res) => {render.page(handler, res)}		// Else render as if '.html' file
 	}
-	registration.test = util.wildcardToRegExp(route)
-	registration.route = route
-	Routing.push(registration)
+	registration.test = util.wildcardToRegExp(route)	// Modify route definition to regular expression
+	registration.route = route							// Include original route definition
+	
+	Routing.push(registration)							// Finalize registration
 }
 
 
