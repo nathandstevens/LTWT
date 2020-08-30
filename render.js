@@ -59,24 +59,24 @@ const content = (filepath, contentType, res) => {
 
 
 // Render a static html file
-const page = (page, res) => {
-	let readStream = fs.createReadStream(staticPath + page)
+const page = (filepath, res) => {
+	let readStream = fs.createReadStream(staticPath + filepath)
 	
 	readStream.on('open', () => {			// readStream open event
 		res.writeHead(200, {'Content-Type': 'text/html'})
 		readStream.pipe(res)
-		console.log(200 + ":\t" + page)
+		console.log(200 + ":\t" + filepath)
 	})
 	
 	readStream.on('error', (err) => {		// readStream open event
-		error(500, page, res, err)
+		error(500, filepath, res, err)
 	})
 }
 
 
 // Render template and replace placeholders
-const template = (template, res, placeholders={}, httpcode=200, cb) => {
-	let readStream = fs.createReadStream(templatePath + template, {encoding:'utf8'})
+const template = (filepath, res, placeholders={}, httpcode=200) => {
+	let readStream = fs.createReadStream(templatePath + filepath, {encoding:'utf8'})
 	let renderer = TemplateRenderer(placeholders,{})
 	
 	readStream.on('open', () => {			// readStream open event
@@ -86,12 +86,12 @@ const template = (template, res, placeholders={}, httpcode=200, cb) => {
 	})
 	
 	readStream.on('error', (err) => {		// readStream error event
-		error(500, template, res, err)
+		error(500, filepath, res, err)
 
 	})
 	
 	renderer.on('error', (err) => {			// renderer error event
-		error(500, template, res, err)
+		error(500, filepath, res, err)
 	})
 }
 
