@@ -6,8 +6,8 @@ const {Transform} = require('stream')
 
 
 // Defining Variables and Constants
-const staticPath = process.env.SMPLstaticpath || "./resources/static/"
-const templatePath = process.env.SMPLtemplatepath || "./resources/templates/"
+const staticPath = process.env.LTWTstaticpath || "./resources/static/"
+const templatePath = process.env.LTWTtemplatepath || "./resources/templates/"
 
 
 

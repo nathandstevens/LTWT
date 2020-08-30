@@ -7,7 +7,7 @@ const url = require('url')
 
 // Defining Variables and Constants
 let Routing = []
-const handlerPath = process.env.SMPLhandlerpath || "./routes/"
+const handlerPath = process.env.LTWThandlerpath || "./routes/"
 
 
 

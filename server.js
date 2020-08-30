@@ -29,7 +29,7 @@ const httpListener = (req, res) => {
 }
 
 // Start server
-const start = (port=process.env.SMPLport||80) => {
+const start = (port=process.env.LTWTport||80) => {
 	console.log("Creating server...")
 	const s = http.createServer(httpListener)
 	console.log("Server created successfully!")
