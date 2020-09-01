@@ -1,5 +1,5 @@
-./resources/*
-./resources/static/*
-./resources/templates/*
-./routes/*
-./app.js
+resources/*
+routes/*
+app.js
+node_modules/*
+coverage/*
