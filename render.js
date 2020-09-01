@@ -124,5 +124,6 @@ module.exports = {
 	"content":content,
 	"page":page,
 	"template":template,
-	"error":error
+	"error":error,
+	"para":para
 }
