@@ -1,3 +1,4 @@
 resources/*
 routes/*
 app.js
+node_modules/*
