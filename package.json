@@ -15,5 +15,8 @@
     "backend"
   ],
   "author": "Nathan D. Stevens (http://technicallywrites.wordpress.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
 }
