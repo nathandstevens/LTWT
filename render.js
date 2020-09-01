@@ -39,6 +39,13 @@ TemplateRenderer.prototype._transform = function(chunk, enc, cb) {
 
 
 
+// Element Renderers
+// Paragraph
+const para = (res, content) => {
+	res.write("<p>" + content + "</p>")
+}
+
+
 
 // Render arbitrary content
 const content = (filepath, contentType, res) => {
