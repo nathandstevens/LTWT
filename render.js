@@ -45,6 +45,12 @@ const para = (res, content) => {
 	res.write("<p>" + content + "</p>")
 }
 
+const head = (res, content, level=1) => {
+	let tagOpen = "<h" + level + ">"
+	let tagClose = "</h" + level + ">"
+	res.write(tagOpen + content + tagClose)
+}
+
 
 
 // Render arbitrary content
