@@ -1,5 +1,6 @@
 const render = require('./render.js')
 const { ServerResponse, IncomingMessage } = require('http')
+const fs = require('fs')
 jest.mock('http')
 
 
@@ -15,12 +16,6 @@ beforeEach(() => {
 const headers = [2, 3, 4, 5, 6]
 
 
-
-test("render.para Should send <p> element", () => {
-	var res = new ServerResponse()
-	render.para(res, "test")
-	expect(res.write).toHaveBeenCalledWith("<p>test</p>")
-})
 
 test("render.head Should send <h1> element", () => {
 	var res = new ServerResponse()
