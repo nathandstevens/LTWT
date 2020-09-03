@@ -20,6 +20,6 @@ test("render.list Should send <ol> and <li> elements", () => {
 test("render.list Should send <ul> and <li> elements", () => {
 	var res = new ServerResponse()
 	var items = ['item 1', 'item 2', "item 3", "item 4"]
-	list(res, itmes, false)
+	list(res, items, false)
 	expect(res.write).toHaveBeenCalledWith("<ul><li>item 1</li><li>item 2</li><li>item 3</li><li>item 4</li></ul>")
 })
