@@ -116,8 +116,5 @@ module.exports = {
 	"content":content,
 	"page":page,
 	"template":template,
-	"error":error,
-	"para":para,
-	"head":head,
-	"list":list
+	"error":error
 }
