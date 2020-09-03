@@ -42,12 +42,6 @@ TemplateRenderer.prototype._transform = function(chunk, enc, cb) {
 // Element Renderers
 // Paragraph
 
-const head = (res, content, level=1) => {
-	let tagOpen = "<h" + level + ">"
-	let tagClose = "</h" + level + ">"
-	res.write(tagOpen + content + tagClose)
-}
-
 const list = (res, content, ordered=true) => {
 	let listOpen
 	let listClose
