@@ -41,9 +41,6 @@ TemplateRenderer.prototype._transform = function(chunk, enc, cb) {
 
 // Element Renderers
 // Paragraph
-const para = (res, content) => {
-	res.write("<p>" + content + "</p>")
-}
 
 const head = (res, content, level=1) => {
 	let tagOpen = "<h" + level + ">"
