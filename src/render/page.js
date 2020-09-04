@@ -1,5 +1,7 @@
 const {access, createReadStream} = require('fs')
 
+const staticPath = process.env.LTWTstaticpath || "./resources/static/"
+
 // Render a static html file
 const page = (filepath, res) => {
 	let readStream = fs.createReadStream(staticPath + filepath)
