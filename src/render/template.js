@@ -1,4 +1,5 @@
 const {access, createReadStream} = require('fs')
+const {Transform} = require('stream')
 
 const templatePath = process.env.LTWTtemplatepath || "./resources/templates/"
 
