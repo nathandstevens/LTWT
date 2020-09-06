@@ -1,5 +1,5 @@
-const server = require('./server.js')
-const routing = require('./route.js')
+const server = require('./server')
+const routing = require('./route')
 const render = require('./render')
 
 module.exports = {
