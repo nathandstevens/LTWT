@@ -1,6 +1,6 @@
 // Required Modules
-const util = require('./util.js')
-const render = require('./render.js')
+const util = require('./util')
+const render = require('./render')
 const url = require('url')
 
 
