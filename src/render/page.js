@@ -17,4 +17,4 @@ const page = (filepath, res) => {
 	})
 }
 
-module.exports = content
+module.exports = page
