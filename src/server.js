@@ -1,8 +1,8 @@
 // Required Modules
 const http = require('http')
 const url = require('url')
-const render = require('./render.js')
-const routing = require('./route.js')
+const render = require('./render')
+const routing = require('./route')
 
 
 
