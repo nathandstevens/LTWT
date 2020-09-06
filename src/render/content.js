@@ -1,4 +1,5 @@
-const {access, createReadStream} = require('fs')
+const fs = require('fs')
+const error = require('./error.js')
 
 const staticPath = process.env.LTWTstaticpath || "./resources/static/"
 
