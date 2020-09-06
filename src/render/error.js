@@ -1,3 +1,4 @@
+const template = require('./template')
 
 // Render an error page
 const error = (code, href, res, msg='') => {
