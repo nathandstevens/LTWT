@@ -12,7 +12,16 @@ beforeEach(() => {
 
 test("render.content Should call createReadStream with './resources/static/test.png'", () => {
 	var res = new ServerResponse()
-	var spy = jest.spyOn(fs, "createReadStream")
+	let spy = jest.spyOn(fs, "createReadStream")
 	content("test.png", "image/png", res)
 	expect(spy).toHaveBeenCalledWith('./resources/static/test.png')
+	spy.mockRestore();
+})
+
+test("render.content Should call access with './resources/static/test.png'", () => {
+	var res = new ServerResponse()
+	let spy = jest.spyOn(fs, "access")
+	content("/test.png", "image/png", res)
+	expect(spy).toHaveBeenCalled()
+	spy.mockRestore();
 })
