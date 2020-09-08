@@ -1,4 +1,5 @@
-# LTWT
+# LTWT 
+[![Maintainability](https://api.codeclimate.com/v1/badges/c2aa4842066b61a79c19/maintainability)](https://codeclimate.com/github/nathandstevens/LTWT/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/c2aa4842066b61a79c19/test_coverage)](https://codeclimate.com/github/nathandstevens/LTWT/test_coverage)
 ---
 This is a simple web framework.
 Right now there are only a few features.
@@ -54,3 +55,4 @@ Will respond with the specified `code` which should be an http response code. </
 The `href` should be the requested resource. This will be logged in the console. </br>
 The variable `res` should be passed from the second argument in a handler function. </br>
 The variable `msg` is the error message that will be logged in the console.
+
