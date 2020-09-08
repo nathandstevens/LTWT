@@ -1,5 +1,9 @@
 # LTWT 
-[![Maintainability](https://api.codeclimate.com/v1/badges/c2aa4842066b61a79c19/maintainability)](https://codeclimate.com/github/nathandstevens/LTWT/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/c2aa4842066b61a79c19/test_coverage)](https://codeclimate.com/github/nathandstevens/LTWT/test_coverage)
+
+[![npm downloads](http://img.shields.io/npm/dm/ltwt.svg)](https://www.npmjs.com/package/ltwt) 
+[![Maintainability](https://api.codeclimate.com/v1/badges/c2aa4842066b61a79c19/maintainability)](https://codeclimate.com/github/nathandstevens/LTWT/maintainability) 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c2aa4842066b61a79c19/test_coverage)](https://codeclimate.com/github/nathandstevens/LTWT/test_coverage)
+
 ---
 This is a simple web framework.
 Right now there are only a few features.
