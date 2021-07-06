@@ -14,19 +14,27 @@ const handlerPath = process.env.LTWThandlerpath || "./routes/"
 // Register Handler
 const registerHandler = (route, handler) => {
 	let registration = {}
+
 	
-	if ((typeof handler) == "function") {	// Use handler as is if function
+	// Use handler as is if function
+	if ((typeof handler) == "function") {
 		registration.handler = handler
 	}
-	else {									// Expect string otherwise and treat as filename
+
+	// Expect string otherwise and treat as filename
+	else {
+		// Import if is '.js' file
+		// Else render as if '.html' file
 		handler.slice(-3) == '.js'
-			? registration.handler = require(handlerPath + handler)					// Import if is '.js' file
-			: registration.handler = (req, res) => {render.page(handler, res)}		// Else render as if '.html' file
+			? registration.handler = require(handlerPath + handler)
+			: registration.handler = (req, res) => {render.page(handler, res)}
 	}
-	registration.test = util.wildcardToRegExp(route)	// Modify route definition to regular expression
-	registration.route = route							// Include original route definition
-	
-	Routing.push(registration)							// Finalize registration
+	// Modify route definition to regular expression
+	registration.test = util.wildcardToRegExp(route)
+	// Include original route definition
+	registration.route = route
+	// Finalize registration
+	Routing.push(registration)
 }
 
 

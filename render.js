@@ -24,6 +24,7 @@ function TemplateRenderer(placeholders, options) {
 }
 util.inherits(TemplateRenderer, Transform)
 
+// Placeholder replacement with regular expressions
 TemplateRenderer.prototype._transform = function(chunk, enc, cb) {
 	let renderedTemplate = chunk.toString()
 	
@@ -43,14 +44,16 @@ TemplateRenderer.prototype._transform = function(chunk, enc, cb) {
 // Render arbitrary content
 const content = (filepath, contentType, res) => {
 	let readStream = fs.createReadStream(staticPath + filepath)
-	
-	readStream.on('open', () => {			// readStream open event
+
+	// readStream open event	
+	readStream.on('open', () => {
 		res.writeHead(200, {'Content-Type': contentType})
 		readStream.pipe(res)
 		console.log(200 + ":\t" + filepath)
 	})
-	
-	readStream.on('error', (err) => {		// readStream error event
+
+	// readStream error event	
+	readStream.on('error', (err) => {
 		fs.access(staticPath + filepath, fs.constants.F_OK, (err) => {
 			error(err ? 404 : 500, filepath, res, err ? '' : err)
 		})
@@ -61,14 +64,16 @@ const content = (filepath, contentType, res) => {
 // Render a static html file
 const page = (filepath, res) => {
 	let readStream = fs.createReadStream(staticPath + filepath)
-	
-	readStream.on('open', () => {			// readStream open event
+
+	// readStream open event	
+	readStream.on('open', () => {
 		res.writeHead(200, {'Content-Type': 'text/html'})
 		readStream.pipe(res)
 		console.log(200 + ":\t" + filepath)
 	})
-	
-	readStream.on('error', (err) => {		// readStream open event
+
+	// readStream error event	
+	readStream.on('error', (err) => {
 		error(500, filepath, res, err)
 	})
 }
@@ -78,19 +83,22 @@ const page = (filepath, res) => {
 const template = (filepath, res, placeholders={}, httpcode=200) => {
 	let readStream = fs.createReadStream(templatePath + filepath, {encoding:'utf8'})
 	let renderer = TemplateRenderer(placeholders,{})
-	
-	readStream.on('open', () => {			// readStream open event
+
+	// readStream open event	
+	readStream.on('open', () => {
 		readStream.pipe(renderer)
 		res.writeHead(httpcode, {'Content-Type': 'text/html'})
 		renderer.pipe(res)
 	})
-	
-	readStream.on('error', (err) => {		// readStream error event
+
+	// readStream error event	
+	readStream.on('error', (err) => {
 		error(500, filepath, res, err)
 
 	})
-	
-	renderer.on('error', (err) => {			// renderer error event
+
+	// renderer error event
+	renderer.on('error', (err) => {	
 		error(500, filepath, res, err)
 	})
 }
