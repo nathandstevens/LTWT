@@ -31,6 +31,11 @@ Handlers use the variables `req` and `res` as reqest and respons objects passed 
 Environmental variable *LTWThandlerpath* can be used to change the handler path.
 </br></br>
 
+### LTWT.registerAllStatic()
+Will register an appropriate handler for all files in the resources/static directory.
+Only HTML documents are supported at this time. However, support for images is being developed.
+</br></br>
+
 ### LTWT.render.content(filepath, contentType, res)
 Will respond with content at specified `filepath`. </br>
 The `filepath` will be rooted in `./resources/static/`, the default static content path. </br>
