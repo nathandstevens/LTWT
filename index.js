@@ -5,5 +5,6 @@ const render = require('./render.js')
 module.exports = {
 	"start":server.start,
 	"render":render,
-	"registerHandler":routing.registerHandler
+	"registerHandler":routing.registerHandler,
+	"registerAllStatic":routing.registerAllStatic
 }

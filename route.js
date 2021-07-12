@@ -2,6 +2,7 @@
 const util = require('./util.js')
 const render = require('./render.js')
 const url = require('url')
+const fs = require('fs')
 
 
 
@@ -38,6 +39,15 @@ const registerHandler = (route, handler) => {
 }
 
 
+// Register all static resources
+const registerAllStatic = () => {
+	fs.readdir(render.staticPath, (err, files) => {
+		files.forEach((filename) => {
+			registerHandler("/" + filename, filename)
+		})
+	})
+}
+
 // Check to see if path is in listed routes.
 const inRoute = (pathname) => {
 	let result = Routing.some((x) => {return x.route == pathname})
@@ -59,6 +69,7 @@ const route = (req, res) => {
 
 
 module.exports = {
+	"registerAllStatic":registerAllStatic,
 	"registerHandler": registerHandler,
 	"inRoute": inRoute,
 	"route": route
