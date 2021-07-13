@@ -43,6 +43,9 @@ const registerHandler = (route, handler) => {
 const registerAllStatic = () => {
 	fs.readdir(render.staticPath, (err, files) => {
 		files.forEach((filename) => {
+			if (filename == "index.html") {
+				registerHandler("/", filename)
+			}
 			registerHandler("/" + filename, filename)
 		})
 	})
